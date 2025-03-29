@@ -45,6 +45,18 @@ Given("I visit {string}", (url) => {
  Given("I get in the element by class {string}", (elementByClass) => {
   commonPage.getElementByClass(elementByClass);
  })
+
+ Given("I check that the element with data-test {string} should {string}", (elementByDataTest, assertion) => {
+  commonPage.checkElementByDataTest(elementByDataTest, assertion);
+ })
+ 
+ Given("I click on the element with data-test {string}", (elementByDataTest) => {
+  commonPage.clickElementByDataTest(elementByDataTest);
+ });
+
+ Given("In the element with data-test {string} i select an option {string}", (text, elementByDataTest) => {
+  commonPage.selectElementByDataTest(text, elementByDataTest);
+ });
  
  
 

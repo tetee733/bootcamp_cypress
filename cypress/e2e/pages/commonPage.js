@@ -43,11 +43,19 @@ export class CommonPage{
     this.getElementByDataTest(elementByDataTest).click()
    }
 
-   typeElementByDataTest(elementByDataTest, text) {
-    this.getElementByDataTest(elementByDataTest).type(text)
+   checkElementByDataTest(elementByDataTest, assertion) {
+    this.getElementByDataTest(elementByDataTest).should(assertion)
    }
 
-   checkElementContains (elementByDataTest, text) {
+   selectElementByDataTest(elementByDataTest, text) {
+    this.getElementByDataTest(elementByDataTest).select(text)
+   }
+
+   checkElementByDataTest2 (elementByDataTest, text) {
+    this.getElementByDataTest(elementByDataTest).should('contain', text)
+   }
+
+   checkElementByDataTestContains (elementByDataTest, text) {
     this.getElementByDataTest(elementByDataTest).should('contain', text)
    }
 

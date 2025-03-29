@@ -21,3 +21,10 @@ Given("I check the element with class inventory-item doesn't exist", () => {
 Given("I check the element with class inventory-item is visible", () => {
     shoppingCartPage.elementWithClassInventoryItemIsVisible();
 })
+Given("I Find an element in a container and I check which is the first", () => {
+    shoppingCartPage.findTheFirstElementInAContainer();
+})
+
+Given("I Find an element in a container and I check which is the last", () => {
+    shoppingCartPage.findTheLastElementInAContainer();
+})

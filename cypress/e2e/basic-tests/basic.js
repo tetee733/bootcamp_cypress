@@ -44,7 +44,7 @@ describe("basic test", () => {
     cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Username and password do not match any user in this service')
   });
 
-  it.only("Check error Epic sadface: Sorry, this user has been locked out. ", () => {
+  it("Check error Epic sadface: Sorry, this user has been locked out. ", () => {
     cy.url().should('not.include', 'inventory.html');
     cy.get('[data-test="primary-header"]').should('not.exist');
     cy.get('[data-test="username"]').type('locked_out_user');
@@ -52,6 +52,32 @@ describe("basic test", () => {
     cy.get('[data-test="login-button"]').click();
     cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Sorry, this user has been locked out.')
   });
+  it("Check error Epic sadface: Sorry, this user has been locked out. ", () => {
+    cy.get('[data-test="username"]').type('standard_user');
+    cy.get('[data-test="password"]').type('secret_sauce');
+    cy.url().should('not.include', 'inventory.html');
+    cy.get('[data-test="primary-header"]').should('not.exist');
+    cy.get('[data-test="login-button"]').click();
+    cy.url().should('include', 'inventory.html');
+    cy.get('[data-test="primary-header"]').should('contain', 'Swag Labs');
+    cy.get('[data-test="inventory-item-sauce-labs-bolt-t-shirt-img"]').click()
+    cy.url().should('include', 'inventory-item.html?id=1');
+    cy.get('[data-test="back-to-products"]').click()
+    cy.url().should('include', 'inventory.html');
+    cy.get('[data-test="shopping-cart-badge"]').should('not.exist')
 
+  });
+  it.only("Check error Epic sadface: Sorry, this user has been locked out. ", () => {
+    cy.get('[data-test="username"]').type('standard_user');
+    cy.get('[data-test="password"]').type('secret_sauce');
+    cy.url().should('not.include', 'inventory.html');
+    cy.get('[data-test="primary-header"]').should('not.exist');
+    cy.get('[data-test="login-button"]').click();
+    cy.url().should('include', 'inventory.html');
+    cy.get('[data-test="primary-header"]').should('contain', 'Swag Labs');
+    cy.get('[data-test="product-sort-container"]').select('lohi')
+    cy.get('[data-test="inventory-list"]').find('[data-test="inventory-item"]').first().should('contain', 'Sauce Labs Onesie')
+    cy.get('[data-test="inventory-list"]').find('[data-test="inventory-item"]').last().should('contain', 'Sauce Labs Fleece Jacket')
 
+})
 })

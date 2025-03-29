@@ -64,6 +64,4 @@ Background:
   And I check that the url doesn't include the endpoint "inventory.html"
   When I click on the button with data-test "login-button"
   Then I get in the element by data test "error" and check if have the correct text "Epic sadface: Sorry, this user has been locked out."
-
-
-
+  
