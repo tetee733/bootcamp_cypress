@@ -52,7 +52,7 @@ describe("basic test", () => {
     cy.get('[data-test="login-button"]').click();
     cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Sorry, this user has been locked out.')
   });
-  it("Check error Epic sadface: Sorry, this user has been locked out. ", () => {
+  it("Checking product details of Sauce Labs Bolt T-Shirt and checking the shopping cart is empty", () => {
     cy.get('[data-test="username"]').type('standard_user');
     cy.get('[data-test="password"]').type('secret_sauce');
     cy.url().should('not.include', 'inventory.html');
@@ -67,7 +67,7 @@ describe("basic test", () => {
     cy.get('[data-test="shopping-cart-badge"]').should('not.exist')
 
   });
-  it.only("Check error Epic sadface: Sorry, this user has been locked out. ", () => {
+  it("Checking the order price of the products ", () => {
     cy.get('[data-test="username"]').type('standard_user');
     cy.get('[data-test="password"]').type('secret_sauce');
     cy.url().should('not.include', 'inventory.html');
