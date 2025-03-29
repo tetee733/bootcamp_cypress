@@ -67,7 +67,7 @@ describe("basic test", () => {
     cy.get('[data-test="shopping-cart-badge"]').should('not.exist')
 
   });
-  it("Checking the order price of the products ", () => {
+  it.only("Checking the order price of the products ", () => {
     cy.get('[data-test="username"]').type('standard_user');
     cy.get('[data-test="password"]').type('secret_sauce');
     cy.url().should('not.include', 'inventory.html');
@@ -76,8 +76,8 @@ describe("basic test", () => {
     cy.url().should('include', 'inventory.html');
     cy.get('[data-test="primary-header"]').should('contain', 'Swag Labs');
     cy.get('[data-test="product-sort-container"]').select('lohi')
-    cy.get('[data-test="inventory-list"]').find('[data-test="inventory-item"]').first().should('contain', 'Sauce Labs Onesie')
-    cy.get('[data-test="inventory-list"]').find('[data-test="inventory-item"]').last().should('contain', 'Sauce Labs Fleece Jacket')
+    cy.get('[data-test="inventory-list"]').children().first().should('contain', 'Sauce Labs Onesie')
+    cy.get('[data-test="inventory-list"]').children().last().should('contain', 'Sauce Labs Fleece Jacket')
 
 })
 })
