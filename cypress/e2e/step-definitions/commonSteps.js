@@ -27,11 +27,19 @@ Given("I visit {string}", (url) => {
  });
 
  Given("I get in the element by data test {string} and check if contain the correct text {string}", (elementByDataTest, text) => {
-  commonPage.checkElementContains(elementByDataTest, text);
+  commonPage.checkElementByDataTestContains(elementByDataTest, text);
  })
 
  Given("I get in the element by data test {string} and check if have the correct text {string}", (elementByDataTest, text) => {
   commonPage.checkElementHaveText(elementByDataTest, text);
+ })
+
+ Given("I get in the first element by data test {string} and check if have the correct name {string} and price {string}", (elementByDataTest, name, price) => {
+  commonPage.checkTheFirstElementByDataTestContainsTwoThings(elementByDataTest, name, price);
+ })
+
+ Given("I get in the last element by data test {string} and check if have the correct name {string} and price {string}", (elementByDataTest, name, price) => {
+  commonPage.checkTheLastElementByDataTestContainsTwoThings(elementByDataTest, name, price);
  })
 
  Given("I check if the body contain a text {string}", (text) => {
@@ -57,6 +65,46 @@ Given("I visit {string}", (url) => {
  Given("In the element with data-test {string} i select an option {string}", (text, elementByDataTest) => {
   commonPage.selectElementByDataTest(text, elementByDataTest);
  });
+ // Steps para testear accesibilidad
+
+ Given('I test the accesibility in all the screen', () => {
+  commonPage.testAccesibilityInScreen()
+})
+
+Given('I test the accesibility on the element with locator {string}', (elementLocator) => {
+  commonPage.testAccesibilityOnElement(elementLocator)
+})
  
+//-------------------------------------------------------------------------------------------//
+  // Steps para intercept
+
+Given('I wait until the api call for the cookies in HBO page', () => {
+  commonPage.interceptHBOApiCall()
+})
+
+Given('I wait until the api call {string}', (interceptApiCall) => {
+  commonPage.interceptApiCall(interceptApiCall)
+})
+
+
+Given('I wait until the api call with method {string}, endpoint {string} for the max time {int}', (method, interceptApiCall, timeoutTime) => {
+  commonPage.interceptApiCallMethodTimeout(method, interceptApiCall, timeoutTime)
+})
+
+//-------------------------------------------------------------------------------------------//
+  // Steps para intercept
+
+Given('I wait until the api call for the cookies in HBO page', () => {
+  commonPage.interceptHBOApiCall()
+})
+  
+Given('I wait until the api call {string}', (interceptApiCall) => {
+  commonPage.interceptApiCall(interceptApiCall)
+})
+  
+  
+Given('I wait until the api call with method {string}, endpoint {string} for the max time {int}', (method, interceptApiCall, timeoutTime) => {
+  commonPage.interceptApiCallMethodTimeout(method, interceptApiCall, timeoutTime)
+})
  
 

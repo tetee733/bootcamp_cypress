@@ -1,7 +1,8 @@
 export class CommonPage{
 
   visitLink(url) {
-  cy.visit(url);
+    cy.visit('https://www.max.com/es/es', {
+    failOnStatusCode: false })
   }
   
   checkUrlnotInclude(endpoint) {
@@ -37,6 +38,7 @@ export class CommonPage{
    }
 
 
+
    // Better practices
 
    clickElementByDataTest(elementByDataTest) {
@@ -58,6 +60,14 @@ export class CommonPage{
    checkElementByDataTestContains (elementByDataTest, text) {
     this.getElementByDataTest(elementByDataTest).should('contain', text)
    }
+   
+   checkTheFirstElementByDataTestContainsTwoThings (elementByDataTest, name, price) {
+    this.getElementByDataTest(elementByDataTest).first().should('contain', name).and('contain', price)
+   }
+
+   checkTheLastElementByDataTestContainsTwoThings (elementByDataTest, name, price) {
+    this.getElementByDataTest(elementByDataTest).last().should('contain', name).and('contain', price)
+   }
 
    checkElementHaveText (elementByDataTest, text) {
     this.getElementByDataTest(elementByDataTest).should('have.text', text)
@@ -74,4 +84,28 @@ export class CommonPage{
    clickButtonByText (text) {
     cy.get('inputbutton').contain(text).click()
    }
+   /// Función para testear accesibilidad
+  testAccesibilityInScreen () {
+   cy.injectAxe();
+   cy.checkA11y();
+  }
+
+  testAccesibilityOnElement (elementLocator) {
+    cy.injectAxe();
+    cy.checkA11y(elementLocator)
+  }
+  interceptHBOApiCall () {
+    cy.intercept('GET','**/ot_guard_logo.svg').as('hboCookies');
+    cy.wait('@hboCookies', {timeout:10000}); 
+  }
+
+  interceptApiCall (apiCall) {
+    cy.intercept('GET',apiCall).as('apiCallAlias');
+    cy.wait('@apiCallAlias', {timeout:10000}); 
+  }
+
+  interceptApiCallMethodTimeout (method, apiCall, timeoutTime) {
+    cy.intercept(method,apiCall).as('apiCallAlias');
+    cy.wait('@apiCallAlias', {timeout:timeoutTime}); 
+  }
  }

@@ -22,11 +22,9 @@ export class ShoppingCartPage extends CommonPage{
         cy.get(`[class="inventory-item"]`).should('be.visible')
     }
     findTheFirstElementInAContainer () {
-        cy.get('[data-test="inventory-list"]').find('[data-test="inventory-item"]')
-        .first().should('contain', 'Sauce Labs Onesie')
+        cy.get('[data-test="inventory-list"]').children().first().should('contain', 'Sauce Labs Onesie')
     }
     findTheLastElementInAContainer () {
-        cy.get('[data-test="inventory-list"]').find('[data-test="inventory-item"]')
-        .last().should('contain', 'Sauce Labs Fleece Jacket')
+        cy.get('[data-test="inventory-list"]').children().last().should('contain', 'Sauce Labs Fleece Jacket')
     }
 }

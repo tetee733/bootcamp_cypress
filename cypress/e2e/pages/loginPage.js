@@ -41,4 +41,16 @@ export class LoginPage extends CommonPage{
  typePassword (password) {
   cy.get('[data-test="password"]').type(password);
  }
+ 
+ loginKeepSession() {
+  cy.session("loginSession", () => {
+    cy.visit("https://www.saucedemo.com/"); // Visita la URL de inicio de sesión
+    this.correctLogin()
+    cy.url().should("eq", "https://www.saucedemo.com/inventory.html"); // Verifica que se redirige a la página correcta
+  });
+  cy.visit("https://www.saucedemo.com/inventory.html", {
+    failOnStatusCode: false,
+  });
+  cy.url().should("include", "/inventory.html");
+}
 }

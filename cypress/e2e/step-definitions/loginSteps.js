@@ -36,7 +36,10 @@ Given("I type the user name {string}", (user) => {
   loginPage.typePassword(password);
  });
 
-
+//session
+Given("I login and keep the sesion for the standar_user", () => {
+  loginPage.loginKeepSession();
+});
 
 
 
