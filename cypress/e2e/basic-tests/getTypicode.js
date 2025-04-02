@@ -137,3 +137,7 @@ describe('Use GET method to get data from typicode', () => {
       })
     })
   })
+
+//El método Put elimina todo lo que no hayamos editado en la respuesta.
+//El método PATCH sólo cambia los valores que hemos editado en la respuesta,
+//los anteriores que no hemos editado se mantienen y no se borran como con el método PUT.
