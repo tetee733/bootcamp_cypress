@@ -2,7 +2,7 @@ Feature: Checkout process test suite
 
 Background:
   Given I login and keep the sesion for the standar_user
-
+@smoke
   Scenario: Complete checkout process with two products in the cart
     Given I check that the element with data-test "shopping-cart-badge" should "not.exist"
     And I click on the element with data-test "add-to-cart-sauce-labs-backpack"

@@ -310,7 +310,7 @@ describe('Testing POST and PUT on Typicode', () => {
      
     })
     // NIVEL 2
-    it.only('Post an endpoint to create an object and delete the new object', () => {
+    it('Post an endpoint to create an object and delete the new object', () => {
         const newObject = {
           "name": "Objeto creado por Manuel González",
           "data": {

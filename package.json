@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:login": "cypress run --env tags=@login --spec '**/*.feature'",
+    "cy:regression": "cypress run --env tags=@regression --spec '**/*.feature'",
+    "cy:main": "cypress run --env tags=@main --spec '**/*.feature'",
+    "cy:checkoutProcess": "cypress run --env tags=@checkoutProcess --spec '**/*.feature'",
+    "cy:smoke": "cypress run --env tags=@smoke --spec '**/*.feature'",
+    "cy:basic-tests": "cypress run --spec 'cypress/e2e/basic-tests/*.js'"
   },
   "keywords": [],
   "author": "",

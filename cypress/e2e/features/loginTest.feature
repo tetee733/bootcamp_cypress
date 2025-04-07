@@ -1,5 +1,7 @@
 #Para comentar en un archivo .feature se hace con este símbolo #
 #Esto es la descripción de la batería de test contenida en este archivo
+
+@login
 Feature: Login test suite
 
 Background:
@@ -7,6 +9,7 @@ Background:
  Given I visit "https://www.saucedemo.com/"
  
 # Los Scenarios son los tests (lo que antes era "it")
+@smoke
  Scenario: login happy path
   Given I type standar user in login page
   And I type the correct password in login page
@@ -23,7 +26,7 @@ Background:
   And I check that the url doesn't include the endpoint "inventory.html"
   When I click on the button with data-test "login-button"
   Then I check that the url include the endpoint "inventory.html"
-
+@smoke
  Scenario: The very best login test
   Given I type in the text box with data test "username" the text "standard_user"
   And I type in the text box with data test "password" the text "secret_sauce"

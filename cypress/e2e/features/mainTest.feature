@@ -8,7 +8,7 @@ Background:
  And I login with valid user and password
  
 # Los Scenarios son los tests (lo que antes era "it")
-
+@smoke
 Scenario: Checking product details of Sauce Labs Bolt T-Shirt and checking the shopping cart is empty
  Given I check that the element with data-test "shopping-cart-badge" should "not.exist"
  And I click on the element with data-test "inventory-item-sauce-labs-bolt-t-shirt-img"
