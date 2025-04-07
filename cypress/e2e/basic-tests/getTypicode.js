@@ -118,7 +118,7 @@ describe('Use GET method to get data from typicode', () => {
     })
 
   //Ejercicios Test de API nivel 2
-    it.only('GET on typicode.com check status in response and lenght for the body in the Endpoint "todos /1"', () => {
+    it('GET on typicode.com check status in response and lenght for the body in the Endpoint "todos /1"', () => {
       cy.request('https://jsonplaceholder.typicode.com/todos/1').then((response) => {
         expect(response.status).to.eq(200);
         //expect(response.body).to.have.length(200);
