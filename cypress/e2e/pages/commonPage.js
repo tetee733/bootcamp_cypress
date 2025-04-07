@@ -1,7 +1,7 @@
 export class CommonPage{
 
   visitLink(url) {
-    cy.visit('https://www.max.com/es/es', {
+    cy.visit('https://www.saucedemo.com/', {
     failOnStatusCode: false })
   }
   
