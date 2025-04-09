@@ -16,8 +16,15 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run Cypress Main tests
+    - name: Run Cypress main tests
       run: npm run cy:main
-        
+    
+    - name: Send notification to Slack
       env:
+        SLACK_WEBHOOK_URL: ${{ secrets.PIPELINESLACKCONECTION }}
+      run: |
+        payload="payload={\"text\":\":rocket: Pipeline '${{ github.workflow }}' launched on branch '${{ github.ref }}' in repository '${{ github.repository }}'\"}"
+        curl -X POST --data-urlencode "$payload" $SLACK_WEBHOOK_URL
+        
+    env:
         CI: true
