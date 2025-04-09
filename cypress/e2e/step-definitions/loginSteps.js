@@ -1,4 +1,5 @@
 import { When, Then, Given } from "@badeball/cypress-cucumber-preprocessor";
+import 'cypress-mochawesome-reporter/cucumberSupport';
 
 // Clases importadas
 import { LoginPage} from "../pages/loginPage"

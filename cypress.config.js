@@ -1,32 +1,44 @@
-const { defineConfig } = require('cypress');
+const { addCucumberPreprocessorPlugin } = require('@badeball/cypress-cucumber-preprocessor');
+const { createEsbuildPlugin } = require('@badeball/cypress-cucumber-preprocessor/esbuild');
 const createBundler = require('@bahmutov/cypress-esbuild-preprocessor');
-const addCucumberPreprocessorPlugin = require('@badeball/cypress-cucumber-preprocessor').addCucumberPreprocessorPlugin;
-const createEsbuildPlugin = require('@badeball/cypress-cucumber-preprocessor/esbuild').createEsbuildPlugin;
+const { defineConfig } = require('cypress');
+const cypressOnFix = require('cypress-on-fix');
+
 module.exports = defineConfig({
-e2e: {
-  setupNodeEvents(on, config) {
-  // Configura el preprocesador del bundle y el plugin Cucumber.
-    on(
-    'file:preprocessor',
-    createBundler({
-    plugins: [createEsbuildPlugin(config)],
-    })
-  );
-  // Añade el preprocesador de Cucumber.
-  addCucumberPreprocessorPlugin(on, config);
-  // Asegúrate de devolver el objeto de configuración.
-  return config;
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    charts: true,
+    reportPageTitle: 'custom-title',
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveAllAttempts: false,
   },
-  specPattern: ['cypress/e2e/**/*.feature', 'cypress/e2e/basic-tests/*.js']
-  /*
-  Para encontrar los archivos de tests, si queremos que también encuentre
-  archivos .js
-  añade la ruta con la extensión separada con una , todo dentro de []
-  */
-  },
-  
-  env: {
-    snapshotOnly: true,
-    requestMode: true
+  e2e: {
+    setupNodeEvents: async (on, config) => {
+      // "cypress-on-fix" is required because "cypress-mochawesome-reporter" and "cypress-cucumber-preprocessor" use the same hooks
+      on = cypressOnFix(on);
+      
+      // Mochawesome reporter plugin
+      require('cypress-mochawesome-reporter/plugin')(on);
+      
+      // Cucumber plugin
+      await addCucumberPreprocessorPlugin(on, config);
+      
+      // Esbuild preprocessor plugin
+      on(
+        'file:preprocessor',
+        createBundler({ plugins: [createEsbuildPlugin(config)] })
+      );
+
+      return config;
+    },
+    failOnStatusCode: false,
+    chromeWebSecurity: false,
+    specPattern: ['**/*.feature', '**/basic-tests/*.js'],
+    defaultCommandTimeout: 10000,
+    env: {
+      snapshotOnly: true,
+      requestMode: true,
+    },
   },
 });
